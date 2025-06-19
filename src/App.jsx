@@ -1,16 +1,78 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Hero from "./components/Hero";
 import Skills from "./components/Skills";
 import Projects from "./components/Projects";
+import Education from "./components/Education";
 import JobInput from "./components/JobInput";
 
+
+// Navigation bar component
+function Navbar() {
+  const navItems = [
+    { label: "Home", id: "hero-section" },
+    // { label: "Job Input", id: "jobinput-section" },
+    { label: "Education", id: "education-section" },
+    { label: "Skills", id: "skills-section" },
+    { label: "Projects", id: "projects-section" },
+  ];
+
+  const handleScroll = (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  return (
+    <nav className="fixed top-0 left-0 w-full bg-white/80 backdrop-blur shadow z-40">
+      <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-3">
+        <span className="font-bold text-lg tracking-wide text-indigo-600">Nhien Loc Bui</span>
+        <ul className="flex gap-6">
+          {navItems.map((item) => (
+            <li key={item.id}>
+              <button
+                className="text-gray-700 hover:text-indigo-600 font-medium transition-colors"
+                onClick={() => handleScroll(item.id)}
+              >
+                {item.label}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </nav>
+  );
+}
+
 export default function App() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading for 1s
+    const timer = setTimeout(() => setLoading(false), 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="bg-gray-100 text-gray-900 min-h-screen font-sans">
-      <Hero />
-      <JobInput />
-      <Skills />
-      <Projects />
+      <Navbar />
+      <div className=""> {/* Add padding for navbar */}
+        <section id="hero-section">
+          <Hero />
+        </section>
+        <section id="jobinput-section">
+          <JobInput />
+        </section>
+        <section id="education-section">
+          <Education />
+        </section>
+        <section id="skills-section">
+          <Skills />
+        </section>
+        <section id="projects-section">
+          <Projects />
+        </section>
+      </div>
     </div>
   );
 }
