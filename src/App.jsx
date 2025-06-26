@@ -4,6 +4,7 @@ import Skills from "./components/Skills";
 import Projects from "./components/Projects";
 import Education from "./components/Education";
 import JobInput from "./components/JobInput";
+import SkillsGrid from "./components/SkillGrid";
 
 
 // Navigation bar component
@@ -67,7 +68,7 @@ export default function App() {
           <Education />
         </section>
         <section id="skills-section">
-          <Skills />
+          <SkillsGrid />
         </section>
         <section id="projects-section">
           <Projects />
