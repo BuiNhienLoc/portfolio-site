@@ -1,4 +1,4 @@
-import profilePic from "../../photos/Profile.jpg";
+import profilePic from "../data/photos/Profile.jpg";
 import ReactRotatingText from 'react-rotating-text';
 import Social from "./Social";
 import { useEffect, useRef } from "react";
