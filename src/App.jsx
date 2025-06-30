@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Hero from "./components/Home/Hero";
-import Skills from "./components/Skills";
-import Projects from "./components/Projects";
-import Education from "./components/Education";
-import JobInput from "./components/JobInput";
-import SkillsGrid from "./components/SkillGrid";
+import Projects from "./components/Projects/Projects";
+import Education from "./components/Education/Education";
+import JobInput from "./components/AI/JobInput";
+import Skills from "./components/Skills/SkillGrid";
+import Experience from "./components/Experience/Experience";
 
 
 // Navigation bar component
@@ -13,6 +13,7 @@ function Navbar() {
     { label: "Home", id: "hero-section" },
     // { label: "Job Input", id: "jobinput-section" },
     { label: "Education", id: "education-section" },
+    { label: "Experience", id: "experience-section" },
     { label: "Skills", id: "skills-section" },
     { label: "Projects", id: "projects-section" },
   ];
@@ -67,8 +68,11 @@ export default function App() {
         <section id="education-section">
           <Education />
         </section>
+        <section id="experience-section">
+          <Experience />
+        </section>
         <section id="skills-section">
-          <SkillsGrid />
+          <Skills />
         </section>
         <section id="projects-section">
           <Projects />
