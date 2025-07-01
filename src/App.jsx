@@ -5,6 +5,8 @@ import Education from "./components/Education/Education";
 import JobInput from "./components/AI/JobInput";
 import Skills from "./components/Skills/SkillGrid";
 import Experience from "./components/Experience/Experience";
+import Certificates from "./components/Certificates/Certificates";
+
 
 
 // Navigation bar component
@@ -15,6 +17,7 @@ function Navbar() {
     { label: "Education", id: "education-section" },
     { label: "Experience", id: "experience-section" },
     { label: "Skills", id: "skills-section" },
+    { label: "Certificates", id: "certificates-section" },
     { label: "Projects", id: "projects-section" },
   ];
 
@@ -73,6 +76,9 @@ export default function App() {
         </section>
         <section id="skills-section">
           <Skills />
+        </section>
+        <section id="certificates-section">
+          <Certificates />
         </section>
         <section id="projects-section">
           <Projects />
