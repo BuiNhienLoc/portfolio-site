@@ -64,10 +64,32 @@ export default function Hero() {
           I am eager to leverage my skills and collaborative mindset to drive success within a dynamic team environment to improve the world, one line of code at a time.
         </p>
 
-        <button className="mt-4 px-10 py-5 bg-black text-white rounded-lg text-lg font-semibold shadow hover:bg-gray-800 transition-all duration-300">
+        {/* <button className="mt-4 px-10 py-5 bg-black text-white rounded-lg text-lg font-semibold shadow hover:bg-gray-800 transition-all duration-300">
           Say Hello    
           <span>  🚀</span>
-        </button>
+        </button> */}
+        <div className="flex justify-center">
+          <a
+            href="/Luke_Resume.pdf"
+            download
+            className="mt-4 inline-flex items-center px-6 py-3 bg-black text-white rounded-xl text-lg font-semibold shadow hover:bg-gray-800 transition-all duration-300"
+          >
+            Download Resume
+            <svg
+              className="ml-2"
+              width="30"
+              height="26"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+            >
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
+              <polyline points="14 2 14 8 20 8" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
+              <rect x="9" y="13" width="6" height="4" rx="1" stroke="currentColor" strokeWidth="2"/>
+            </svg>
+          </a>
+        </div>
 
         <div className="mt-10 flex flex-col items-center">
           <div className="w-6 h-10 border-2 border-black rounded-full flex items-start justify-center relative">
@@ -75,7 +97,9 @@ export default function Hero() {
           </div>
           <p className="mt-2 text-sm">Scroll Down ↓</p>
         </div>
+        
       </div>
+        
 
       <div
         ref={rightRef}
