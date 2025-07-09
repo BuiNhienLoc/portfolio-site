@@ -52,7 +52,8 @@ export default function Experience() {
 
     return (
         <section className="p-6">
-            <h2 className="text-2xl font-semibold mb-4">Experience</h2>
+            <h2 className="text-4xl font-bold text-center mb-2">Experience</h2>
+            <p className="text-gray-500 text-center mb-8">My work through the year</p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {experienceData.map((exp, index) => (
                     <ExperienceCard

@@ -31,7 +31,7 @@ export default function SkillCard({ skill }) {
               <div className="flex-1">
                 <h2 className="text-3xl font-bold italic mb-2">{skill.name}</h2>
                 <div className="mb-2">
-                  <span className="font-bold text-lg">Describesion</span>
+                  {/* <span className="font-bold text-lg">Describesion</span> */}
                   <p className="text-base">{skill.description}</p>
                 </div>
                 <div className="mb-2">
