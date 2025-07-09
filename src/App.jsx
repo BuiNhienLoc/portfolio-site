@@ -51,11 +51,13 @@ function Navbar() {
 export default function App() {
   const [loading, setLoading] = useState(true);
   const [selectedSkill, setSelectedSkill] = useState(null);
+  const [selectedProject, setSelectedProject] = useState(null);
   const skillsRef = useRef(null);
+  const projectsRef = useRef(null);
 
   useEffect(() => {
     // Simulate loading for 1s
-    const timer = setTimeout(() => setLoading(false), 1000);
+    const timer = setTimeout(() => setLoading(false), 100000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -64,6 +66,14 @@ export default function App() {
     setSelectedSkill(skill);
     setTimeout(() => {
       skillsRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, 100);
+  };
+
+  // Handler to jump to projects and open the card
+  const handleProjectClick = (projectName) => {
+    setSelectedProject(projectName);
+    setTimeout(() => {
+      projectsRef.current?.scrollIntoView({ behavior: "smooth" });
     }, 100);
   };
 
@@ -84,13 +94,21 @@ export default function App() {
           <Experience />
         </section>
         <section id="skills-section" ref={skillsRef}>
-          <Skills selectedSkill={selectedSkill} setSelectedSkill={setSelectedSkill}/>
+          <Skills
+            onProjectClick={handleProjectClick}
+            selectedSkill={selectedSkill}
+            setSelectedSkill={setSelectedSkill}
+          />
         </section>
         <section id="certificates-section">
           <Certificates />
         </section>
-        <section id="projects-section">
-          <Projects onSkillClick={handleSkillClick} />
+        <section id="projects-section" ref={projectsRef}>
+          <Projects
+            onSkillClick={handleSkillClick}
+            selectedProject={selectedProject}
+            setSelectedProject={setSelectedProject}
+          />
         </section>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function SkillCard({ skill, openModal, setSelectedSkill }) {
+export default function SkillCard({ skill, openModal, setSelectedSkill, onProjectClick }) {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
@@ -49,18 +49,22 @@ export default function SkillCard({ skill, openModal, setSelectedSkill }) {
                   <span className="font-bold">Projects:</span>
                   <div className="flex gap-3 mt-2 flex-wrap">
                     {skill.projects.map((p, idx) => (
-                      <a
+                      <button
                         key={idx}
-                        href={p.link}
-                        target="_blank"
-                        rel="noreferrer"
+                        onClick={() => {
+                          if (onProjectClick) {
+                            setShowModal(false);
+                            setSelectedSkill && setSelectedSkill(null);
+                            onProjectClick(p.title);
+                          }
+                        }}
                         className="flex flex-col items-center bg-gray-100 rounded-lg p-2 w-24 shadow hover:bg-gray-200 transition"
                       >
                         {p.logo && (
                           <img src={p.logo} alt={p.title} className="w-10 h-10 mb-1" />
                         )}
                         <span className="text-xs text-center">{p.title}</span>
-                      </a>
+                      </button>
                     ))}
                   </div>
                 </div>

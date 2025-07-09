@@ -6,7 +6,7 @@ export const skills = [
     years: 3,
     description: "Front-end JavaScript library for building UIs.",
     projects: [
-      { title: "Portfolio Site", link: "https://example.com/portfolio" },
+      { title: "Smoll URL", link: "https://example.com/portfolio" },
       { title: "E-commerce App", link: "https://example.com/shop" }
     ]
   },

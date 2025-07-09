@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // Example project data
 const projects = [
@@ -46,9 +46,22 @@ const projects = [
 
 const categories = ["All", "App", "Web", "Design"];
 
-export default function Projects({ onSkillClick }) {
+export default function Projects({ onSkillClick, selectedProject, setSelectedProject }) {
   const [selected, setSelected] = useState("All");
   const [activeIdx, setActiveIdx] = useState(null);
+
+  useEffect(() => {
+    if (selectedProject) {
+      // Find the index of the project to open
+      const idx = filtered.findIndex(p => p.title === selectedProject);
+      if (idx !== -1) {
+        setActiveIdx(idx);
+        setSelected("All"); // Optionally show all projects when jumping
+        setSelectedProject(null); // Reset after opening
+      }
+    }
+    // eslint-disable-next-line
+  }, [selectedProject]);
 
   const filtered = selected === "All"
     ? projects
