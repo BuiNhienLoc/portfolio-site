@@ -1,7 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export default function SkillCard({ skill }) {
+export default function SkillCard({ skill, openModal, setSelectedSkill }) {
   const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    if (openModal) setShowModal(true);
+  }, [openModal]);
+
+  const handleClose = () => {
+    setShowModal(false);
+    setSelectedSkill && setSelectedSkill(null);
+  };
 
   return (
     <>
@@ -18,10 +27,9 @@ export default function SkillCard({ skill }) {
       {showModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
           <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-xl w-full border-4 border-blue-300 relative animate-fadeIn">
-            {/* Close Button */}
             <button
               className="absolute top-3 right-4 text-2xl text-gray-400 hover:text-gray-700 font-bold"
-              onClick={() => setShowModal(false)}
+              onClick={handleClose}
               aria-label="Close"
             >
               &times;
