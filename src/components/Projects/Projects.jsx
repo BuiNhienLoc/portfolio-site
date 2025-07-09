@@ -46,7 +46,7 @@ const projects = [
 
 const categories = ["All", "App", "Web", "Design"];
 
-export default function Projects() {
+export default function Projects({ onSkillClick }) {
   const [selected, setSelected] = useState("All");
   const [activeIdx, setActiveIdx] = useState(null);
 
@@ -124,7 +124,18 @@ export default function Projects() {
                         <span className="font-bold">Skills:</span>
                         <div className="flex gap-2 mt-1 flex-wrap">
                           {project.skills.map((skill, i) => (
-                            <span key={i} className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">{skill}</span>
+                            <span
+                              key={i}
+                              className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium cursor-pointer hover:bg-blue-200"
+                              onClick={() => {
+                                if (onSkillClick) {
+                                  setActiveIdx(null); // close modal
+                                  onSkillClick(skill);
+                                }
+                              }}
+                            >
+                              {skill}
+                            </span>
                           ))}
                         </div>
                       </div>

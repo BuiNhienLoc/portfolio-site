@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Hero from "./components/Home/Hero";
 import Projects from "./components/Projects/Projects";
 import Education from "./components/Education/Education";
@@ -13,7 +13,6 @@ import Certificates from "./components/Certificates/Certificates";
 function Navbar() {
   const navItems = [
     { label: "Home", id: "hero-section" },
-    // { label: "Job Input", id: "jobinput-section" },
     { label: "Education", id: "education-section" },
     { label: "Experience", id: "experience-section" },
     { label: "Skills", id: "skills-section" },
@@ -51,12 +50,22 @@ function Navbar() {
 
 export default function App() {
   const [loading, setLoading] = useState(true);
+  const [selectedSkill, setSelectedSkill] = useState(null);
+  const skillsRef = useRef(null);
 
   useEffect(() => {
     // Simulate loading for 1s
     const timer = setTimeout(() => setLoading(false), 1000);
     return () => clearTimeout(timer);
   }, []);
+
+  // Handler to jump to skills and open the card
+  const handleSkillClick = (skill) => {
+    setSelectedSkill(skill);
+    setTimeout(() => {
+      skillsRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, 100);
+  };
 
   return (
     <div className="bg-gray-100 text-gray-900 min-h-screen font-sans">
@@ -74,14 +83,14 @@ export default function App() {
         <section id="experience-section">
           <Experience />
         </section>
-        <section id="skills-section">
-          <Skills />
+        <section id="skills-section" ref={skillsRef}>
+          <Skills selectedSkill={selectedSkill} setSelectedSkill={setSelectedSkill}/>
         </section>
         <section id="certificates-section">
           <Certificates />
         </section>
         <section id="projects-section">
-          <Projects />
+          <Projects onSkillClick={handleSkillClick} />
         </section>
       </div>
     </div>
