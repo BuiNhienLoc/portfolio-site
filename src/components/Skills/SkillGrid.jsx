@@ -1,7 +1,7 @@
 import { skills } from "../data/skills";
 import SkillCard from "./SkillCard";
 
-export default function SkillsGrid({ selectedSkill, setSelectedSkill }) {
+export default function SkillsGrid({ selectedSkill, setSelectedSkill, onProjectClick }) {
   return (
     <section className="p-6">
       <h2 className="text-4xl font-bold text-center mb-2">Skills</h2>
@@ -13,6 +13,7 @@ export default function SkillsGrid({ selectedSkill, setSelectedSkill }) {
             skill={skill}
             openModal={selectedSkill === skill.name}
             setSelectedSkill={setSelectedSkill}
+            onProjectClick={onProjectClick}
           />
         ))}
       </div>
