@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 // Example education data
 const educationData = [
   {
@@ -111,8 +109,7 @@ function EducationCard({ edu, isActive, onClick }) {
   );
 }
 
-export default function Education() {
-  const [activeIdx, setActiveIdx] = useState(null);
+export default function Education({ setSelectedEducation, selectedEducation }) {
 
   return (
     <section className="py-12 px-4 max-w-3xl mx-auto">
@@ -129,8 +126,12 @@ export default function Education() {
               <div className={`w-[320px]`}>
                 <EducationCard
                   edu={edu}
-                  isActive={activeIdx === idx}
-                  onClick={() => setActiveIdx(activeIdx === idx ? null : idx)}
+                  isActive={selectedEducation === edu.title}
+                  onClick={() => 
+                    setSelectedEducation(
+                    selectedEducation === edu.title ? null : edu.title
+                  )
+                }
                 />
               </div>
             </div>

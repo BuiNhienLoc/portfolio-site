@@ -9,7 +9,7 @@ const projects = [
     link: "#",
     description: "A simple URL shortener app with analytics and custom aliases.",
     skills: ["React", "Node.js", "MongoDB"],
-    associations: ["Personal Project"],
+    associations: ["Vietnamese-German University"],
     featured: true,
   },
   {
@@ -46,7 +46,7 @@ const projects = [
 
 const categories = ["All", "App", "Web", "Design"];
 
-export default function Projects({ onSkillClick, selectedProject, setSelectedProject }) {
+export default function Projects({ onSkillClick, selectedProject, setSelectedProject, onEducationClick}) {
   const [selected, setSelected] = useState("All");
   const [activeIdx, setActiveIdx] = useState(null);
 
@@ -62,6 +62,7 @@ export default function Projects({ onSkillClick, selectedProject, setSelectedPro
     }
     // eslint-disable-next-line
   }, [selectedProject]);
+
 
   const filtered = selected === "All"
     ? projects
@@ -133,6 +134,7 @@ export default function Projects({ onSkillClick, selectedProject, setSelectedPro
                     <div className="flex-1">
                       <h2 className="text-3xl font-bold mb-2">{project.title}</h2>
                       <div className="mb-2 text-gray-600">{project.description}</div>
+                      
                       <div className="mb-2">
                         <span className="font-bold">Skills:</span>
                         <div className="flex gap-2 mt-1 flex-wrap">
@@ -152,14 +154,35 @@ export default function Projects({ onSkillClick, selectedProject, setSelectedPro
                           ))}
                         </div>
                       </div>
+
                       <div className="mb-2">
+                        <span className="font-bold">Association:</span>
+                        <div className="flex gap-2 mt-1 flex-wrap">
+                          {project.associations.map((association, j)=> (
+                            <span
+                              key={j}
+                              className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium cursor-pointer hover:bg-blue-200"
+                              onClick={() => {
+                                if (onEducationClick) {
+                                  setActiveIdx(null); // close modal
+                                  onEducationClick(association);
+                                }
+                              }}
+                            >
+                              {association}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* <div className="mb-2">
                         <span className="font-bold">Association:</span>
                         <div className="flex gap-2 mt-1 flex-wrap">
                           {project.associations.map((association, i) => (
                             <span key={i} className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">{association}</span>
                           ))}
                         </div>
-                      </div>
+                      </div> */}
                       <a
                         href={project.link}
                         target="_blank"
