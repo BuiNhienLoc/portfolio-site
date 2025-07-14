@@ -52,6 +52,8 @@ export default function App() {
   const [loading, setLoading] = useState(true);
   const [selectedSkill, setSelectedSkill] = useState(null);
   const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedEducation, setSelectedEducation] = useState(null);
+  const educationRef = useRef(null);
   const skillsRef = useRef(null);
   const projectsRef = useRef(null);
 
@@ -63,19 +65,29 @@ export default function App() {
 
   // Handler to jump to skills and open the card
   const handleSkillClick = (skill) => {
-    setSelectedSkill(skill);
+    skillsRef.current?.scrollIntoView({ behavior: "smooth" });
+    
     setTimeout(() => {
-      skillsRef.current?.scrollIntoView({ behavior: "smooth" });
-    }, 100);
+      setSelectedSkill(skill);
+    }, 700);
   };
 
   // Handler to jump to projects and open the card
   const handleProjectClick = (projectName) => {
-    setSelectedProject(projectName);
+    projectsRef.current?.scrollIntoView({ behavior: "smooth" });
+    
     setTimeout(() => {
-      projectsRef.current?.scrollIntoView({ behavior: "smooth" });
-    }, 100);
+      setSelectedProject(projectName);
+    }, 700);
   };
+
+  const handleEducationClick = (educationName) => {
+    educationRef.current?.scrollIntoView({ behavior: "smooth" });
+    
+    setTimeout(() => {
+      setSelectedEducation(educationName);
+    }, 700);
+  }
 
   return (
     <div className="bg-gray-100 text-gray-900 min-h-screen font-sans">
@@ -87,8 +99,11 @@ export default function App() {
         <section id="jobinput-section">
           <JobInput />
         </section>
-        <section id="education-section">
-          <Education />
+        <section id="education-section" ref={educationRef}>
+          <Education 
+            selectedEducation={selectedEducation}
+            setSelectedEducation={setSelectedEducation}
+          />
         </section>
         <section id="experience-section">
           <Experience />
@@ -96,6 +111,7 @@ export default function App() {
         <section id="skills-section" ref={skillsRef}>
           <Skills
             onProjectClick={handleProjectClick}
+            onEducationClick={handleEducationClick}
             selectedSkill={selectedSkill}
             setSelectedSkill={setSelectedSkill}
           />
@@ -106,6 +122,9 @@ export default function App() {
         <section id="projects-section" ref={projectsRef}>
           <Projects
             onSkillClick={handleSkillClick}
+            onEducationClick={handleEducationClick}
+            selectedEducation={selectedEducation}
+            setSelectedEducation={setSelectedEducation}
             selectedProject={selectedProject}
             setSelectedProject={setSelectedProject}
           />
