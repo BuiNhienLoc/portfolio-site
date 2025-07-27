@@ -6,6 +6,7 @@ import JobInput from "./components/AI/JobInput";
 import Skills from "./components/Skills/SkillGrid";
 import Experience from "./components/Experience/Experience";
 import Certificates from "./components/Certificates/Certificates";
+import Courses from "./components/Courses/Courses";
 
 
 
@@ -17,6 +18,7 @@ function Navbar() {
     { label: "Experience", id: "experience-section" },
     { label: "Skills", id: "skills-section" },
     { label: "Certificates", id: "certificates-section" },
+    { label: "Courses", id: "courses-section" },
     { label: "Projects", id: "projects-section" },
   ];
 
@@ -118,6 +120,9 @@ export default function App() {
         </section>
         <section id="certificates-section">
           <Certificates />
+        </section>
+        <section id="courses-section">
+          <Courses />
         </section>
         <section id="projects-section" ref={projectsRef}>
           <Projects
